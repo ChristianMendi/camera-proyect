@@ -1,9 +1,14 @@
 <div class="camera-container">
-    <img [src]="imgUrl" height="150" width="350">
+    <div class="image-list">
+        <img *ngFor="let img of imgUrls" [src]="img" height="150" width="200">
+    </div>
+
     <button (click)="takePicture()">Tomar foto</button>
+
     <div *ngIf="errorMessage">
         <p>{{ errorMessage }}</p>
     </div>
+
     <div *ngIf="loading">
         <p>Cargando...</p>
     </div>
