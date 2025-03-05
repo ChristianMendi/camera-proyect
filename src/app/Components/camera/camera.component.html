@@ -1,0 +1,10 @@
+<div class="camera-container">
+    <img [src]="imgUrl" height="150" width="350">
+    <button (click)="takePicture()">Tomar foto</button>
+    <div *ngIf="errorMessage">
+        <p>{{ errorMessage }}</p>
+    </div>
+    <div *ngIf="loading">
+        <p>Cargando...</p>
+    </div>
+</div>
