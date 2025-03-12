@@ -6,10 +6,6 @@ import { Injectable } from "@angular/core"
 export class CameraService {
   constructor() {}
 
-  private isMobile(): boolean {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-  }
-
   async checkPermissions(): Promise<void> {
     if (typeof navigator === "undefined" || !navigator.mediaDevices) {
       throw new Error("La API de cámara no está disponible en este dispositivo")
@@ -25,44 +21,6 @@ export class CameraService {
   async takePicture(): Promise<string> {
     await this.checkPermissions()
 
-    // En dispositivos móviles, usar el input de tipo file para acceder a la cámara
-    if (this.isMobile()) {
-      return this.takePictureMobile()
-    } else {
-      return this.takePictureDesktop()
-    }
-  }
-
-  private takePictureMobile(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const input = document.createElement("input")
-      input.type = "file"
-      input.accept = "image/*"
-      input.capture = "environment" // Usar cámara trasera por defecto
-
-      input.onchange = (event) => {
-        const file = (event.target as HTMLInputElement).files?.[0]
-        if (!file) {
-          reject(new Error("No se seleccionó ninguna imagen"))
-          return
-        }
-
-        const reader = new FileReader()
-        reader.onload = () => {
-          resolve(reader.result as string)
-        }
-        reader.onerror = () => {
-          reject(new Error("Error al leer la imagen"))
-        }
-        reader.readAsDataURL(file)
-      }
-
-      // Simular clic en el input
-      input.click()
-    })
-  }
-
-  private takePictureDesktop(): Promise<string> {
     return new Promise((resolve, reject) => {
       const video = document.createElement("video")
       const canvas = document.createElement("canvas")
