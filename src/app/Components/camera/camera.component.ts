@@ -1,43 +1,50 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CameraService } from '../../Services/camera.service';
+import { Component, EventEmitter, Output, inject } from "@angular/core"
+import { CommonModule } from "@angular/common"
+import { CameraService } from "../../Services/camera.service"
 
 @Component({
-  selector: 'app-camera',
+  selector: "app-camera",
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './camera.component.html',
-  styleUrls: ['./camera.component.css']
+  templateUrl: "./camera.component.html",
+  styleUrls: ["./camera.component.css"],
 })
 export class CameraComponent {
-  cameraService: CameraService = inject(CameraService);
-  imgUrls: string[] = []; // Arreglo para almacenar imágenes
-  errorMessage: string = '';
-  loading: boolean = false;
+  private cameraService = inject(CameraService)
+  imgUrl: string[] = []
+  errorMessage = ""
+  loading = false
+
+  @Output() imageCaptured = new EventEmitter<string>()
 
   async takePicture() {
-    this.errorMessage = ''; // Limpiar mensajes de error anteriores
-
+    this.errorMessage = "" // Limpiar mensajes de error anteriores
     try {
-      this.loading = true;
-      const newImgUrl = await this.cameraService.takePicture();
-      
+      this.loading = true
+      const newImgUrl = await this.cameraService.takePicture()
       if (!newImgUrl) {
-        throw new Error('No se obtuvo una imagen válida');
+        throw new Error("No se obtuvo una imagen válida")
       }
-
-      // Agregar la nueva imagen al arreglo, asegurando un máximo de 5 imágenes
-      this.imgUrls.unshift(newImgUrl);
-      if (this.imgUrls.length > 5) {
-        this.imgUrls.pop();
-      }
-
-      await new Promise(resolve => setTimeout(resolve, 100));
-      this.loading = false;
+      this.imgUrl.push(newImgUrl)
+      this.imageCaptured.emit(newImgUrl) // Emitir imagen al formulario
+      this.loading = false
     } catch (error) {
-      console.error('Error al capturar imagen:', error);
-      this.errorMessage = String(error);
-      this.loading = false;
+      console.error("Error al capturar imagen:", error)
+      this.errorMessage = String(error)
+      this.loading = false
+    }
+  }
+
+  removeImage(index: number) {
+    if (index >= 0 && index < this.imgUrl.length) {
+      this.imgUrl.splice(index, 1)
+      // Si eliminamos la última imagen, notificamos al componente padre
+      if (this.imgUrl.length > 0) {
+        this.imageCaptured.emit(this.imgUrl[this.imgUrl.length - 1])
+      } else {
+        this.imageCaptured.emit("") // No hay imágenes
+      }
     }
   }
 }
+

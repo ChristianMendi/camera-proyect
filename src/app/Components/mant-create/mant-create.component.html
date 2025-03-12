@@ -1,0 +1,82 @@
+<div class="mant-create-container">
+  <div class="header-actions">
+    <h2>Crear Nuevo Reporte</h2>
+    <a routerLink="/reportes" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Volver a Reportes
+    </a>
+  </div>
+  
+  <form (ngSubmit)="saveReport()" #reportForm="ngForm">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="equipmentId">ID del Equipo:</label>
+        <input 
+          type="text" 
+          id="equipmentId" 
+          name="equipmentId" 
+          [(ngModel)]="equipmentId" 
+          required
+          #equipmentIdInput="ngModel"
+          placeholder="Ingresa el ID del equipo"
+        >
+        <div *ngIf="equipmentIdInput.invalid && (equipmentIdInput.dirty || equipmentIdInput.touched)" class="error-message">
+          El ID del equipo es obligatorio
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="description">Descripción:</label>
+      <textarea 
+        id="description" 
+        name="description" 
+        [(ngModel)]="description" 
+        required
+        #descriptionInput="ngModel"
+        placeholder="Describe el mantenimiento realizado"
+        rows="4"
+      ></textarea>
+      <div *ngIf="descriptionInput.invalid && (descriptionInput.dirty || descriptionInput.touched)" class="error-message">
+        La descripción es obligatoria
+      </div>
+    </div>
+    
+    <div class="camera-section">
+      <h3>Capturar Imagen</h3>
+      <div class="camera-container">
+        <div *ngIf="imageUrl" class="preview-container">
+          <img [src]="imageUrl" alt="Vista previa">
+          <button type="button" class="remove-image-btn" (click)="removeImage()">
+            <i class="fas fa-times"></i> Eliminar imagen
+          </button>
+        </div>
+        
+        <div *ngIf="!imageUrl">
+          <app-camera (imageCaptured)="onImageCaptured($event)"></app-camera>
+        </div>
+      </div>
+      
+      <div *ngIf="formSubmitted && !imageUrl" class="error-message">
+        Se requiere una imagen para el reporte
+      </div>
+    </div>
+    
+    <div class="form-actions">
+      <button 
+        type="button" 
+        class="cancel-btn"
+        routerLink="/reportes"
+      >
+        Cancelar
+      </button>
+      <button 
+        type="submit" 
+        class="save-btn"
+        [disabled]="reportForm.invalid || !imageUrl"
+      >
+        Guardar Reporte
+      </button>
+    </div>
+  </form>
+</div>
+

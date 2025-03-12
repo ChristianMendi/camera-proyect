@@ -1,3 +1,5 @@
+///home/user/camera-proyect/src/app/Services/camera.service.ts
+
 import { Injectable } from '@angular/core';
 import { Camera, CameraResultType, CameraSource, PermissionStatus } from '@capacitor/camera';
 

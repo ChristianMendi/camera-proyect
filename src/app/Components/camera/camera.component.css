@@ -1,73 +1,78 @@
-/* Estilos generales */
 .camera-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ffe0f0; /* Fondo rosa claro */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    max-width: 90%;
-    margin: auto;
-}
-
-/* Contenedor de imágenes */
-.image-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    align-items: center;
-}
-
-/* Imágenes */
-.image-list img {
-    width: 100%;  /* Se adapta al ancho del contenedor */
-    max-width: 300px; /* Máximo tamaño en pantallas grandes */
-    height: auto;
+    padding: 15px;
     border-radius: 8px;
-    border: 3px solid #ff66b2; /* Borde rosa más fuerte */
-    box-shadow: 0px 2px 8px rgba(255, 105, 180, 0.5);
-}
-
-/* Botón de tomar foto */
-button {
-    background-color: #ff1493; /* Rosa fuerte */
+    background-color: white;
+  }
+  
+  .image-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .image-item {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .remove-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(220, 53, 69, 0.8);
     color: white;
     border: none;
-    padding: 10px 20px;
     font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
+    line-height: 1;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 15px;
-}
-
-button:hover {
-    background-color: #ff66b2; /* Rosa más claro */
-}
-
-/* Mensajes de error y carga */
-p {
-    font-size: 14px;
-    font-weight: bold;
-    color: #d1005c; /* Rojo rosado */
-    text-align: center;
-}
-
-/* Responsividad */
-@media (max-width: 600px) {
-    .camera-container {
-        max-width: 100%;
-        padding: 15px;
-    }
-
-    .image-list img {
-        max-width: 100%; /* Se ajusta al ancho de la pantalla */
-    }
-
-    button {
-        width: 100%;
-    }
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .camera-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .camera-button:hover {
+    background-color: #218838;
+  }
+  
+  .camera-button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 4px;
+  }
+  
+  
