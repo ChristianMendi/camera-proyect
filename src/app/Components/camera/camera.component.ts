@@ -14,8 +14,14 @@ export class CameraComponent {
   imgUrl: string[] = []
   errorMessage = ""
   loading = false
+  isMobile = false
 
   @Output() imageCaptured = new EventEmitter<string>()
+
+  constructor() {
+    // Detectar si es un dispositivo móvil
+    this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+  }
 
   async takePicture() {
     this.errorMessage = "" // Limpiar mensajes de error anteriores

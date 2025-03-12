@@ -4,26 +4,30 @@
 
 .header-actions {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
 }
 
 h2 {
-  color: #333;
+  color: var(--dark-color);
   margin: 0;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .create-btn {
-  background-color: #28a745;
+  background-color: var(--success-color);
   color: white;
-  padding: 8px 16px;
-  border-radius: 4px;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
   text-decoration: none;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: var(--spacing-sm);
   transition: background-color 0.2s;
+  width: 100%;
 }
 
 .create-btn:hover {
@@ -32,68 +36,71 @@ h2 {
 
 .no-reports {
   text-align: center;
-  padding: 40px 20px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  color: #6c757d;
+  padding: var(--spacing-xl) var(--spacing-md);
+  background-color: white;
+  border-radius: var(--border-radius);
+  color: var(--secondary-color);
+  box-shadow: var(--box-shadow);
 }
 
 .create-first-btn {
   display: inline-block;
-  margin-top: 15px;
-  background-color: #007bff;
+  margin-top: var(--spacing-md);
+  background-color: var(--primary-color);
   color: white;
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--border-radius);
   text-decoration: none;
   transition: background-color 0.2s;
 }
 
 .create-first-btn:hover {
-  background-color: #0069d9;
+  background-color: var(--primary-dark);
 }
 
 .reports-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
 }
 
 .report-card {
   background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 16px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: var(--spacing-md);
   transition: transform 0.2s;
 }
 
 .report-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
 }
 
 .report-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: var(--spacing-md);
 }
 
 .report-header h3 {
   margin: 0;
-  color: #007bff;
+  color: var(--primary-color);
+  font-size: 1.1rem;
 }
 
 .delete-btn {
-  background-color: #dc3545;
+  background-color: var(--danger-color);
   color: white;
   border: none;
-  border-radius: 4px;
-  width: 32px;
-  height: 32px;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .delete-btn:hover {
@@ -101,27 +108,43 @@ h2 {
 }
 
 .image-container {
-  margin-top: 12px;
+  margin-top: var(--spacing-md);
   text-align: center;
 }
 
 .image-container img {
   max-width: 100%;
   height: auto;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 768px) {
+/* Media queries para diferentes tamaños de pantalla */
+@media (min-width: 576px) {
   .header-actions {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .create-btn {
-    width: 100%;
-    justify-content: center;
+    width: auto;
+  }
+
+  h2 {
+    text-align: left;
+  }
+}
+
+@media (min-width: 768px) {
+  .reports-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .reports-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

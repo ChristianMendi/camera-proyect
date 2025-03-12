@@ -1,63 +1,98 @@
 .app-container {
-    min-height: 100vh;
-    background-color: #f8f9fa;
-  }
-  
-  .app-header {
-    background-color: #007bff;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .app-header h1 {
-    margin: 0 0 15px 0;
-    font-size: 28px;
-  }
-  
-  .app-nav {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-  }
-  
-  .app-nav a {
-    padding: 8px 16px;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    text-decoration: none;
-  }
-  
-  .app-nav a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-  }
-  
-  .app-nav a.active {
-    background-color: white;
-    color: #007bff;
-    font-weight: 500;
-  }
-  
+  min-height: 100vh;
+  background-color: var(--light-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: var(--spacing-md);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.app-header h1 {
+  margin: 0 0 var(--spacing-md) 0;
+  font-size: 1.5rem;
+}
+
+.app-nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.app-nav a {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.app-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.app-nav a.active {
+  background-color: white;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.app-content {
+  flex: 1;
+  padding: var(--spacing-md);
+  max-width: 100%;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Media queries para diferentes tamaños de pantalla */
+@media (min-width: 576px) {
   .app-content {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: var(--spacing-lg);
+    max-width: 540px;
   }
-  
-  @media (max-width: 768px) {
-    .app-header h1 {
-      font-size: 24px;
-    }
-  
-    .app-nav a {
-      padding: 6px 12px;
-      font-size: 14px;
-    }
+
+  .app-header h1 {
+    font-size: 1.75rem;
   }
-  
-  
+
+  .app-nav a {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .app-content {
+    max-width: 720px;
+  }
+
+  .app-header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .app-content {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .app-content {
+    max-width: 1140px;
+  }
+}
+
