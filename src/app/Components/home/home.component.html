@@ -1,27 +1,27 @@
 <div class="home-container">
   <div class="header-actions">
-    <h2>Lista de Reportes</h2>
-    <a routerLink="/crear" class="create-btn">
+    <h2 class="monda-bold">Lista de Reportes</h2>
+    <a routerLink="/crear" class="create-btn monda-medium">
       <i class="fas fa-plus"></i> Crear Nuevo Reporte
     </a>
   </div>
   
   <div *ngIf="reports.length === 0" class="no-reports">
-    <p>No hay reportes disponibles.</p>
-    <a routerLink="/crear" class="create-first-btn">Crear tu primer reporte</a>
+    <p class="monda-regular">No hay reportes disponibles.</p>
+    <a routerLink="/crear" class="create-first-btn monda-medium">Crear tu primer reporte</a>
   </div>
   
   <div class="reports-grid" *ngIf="reports.length > 0">
     <div *ngFor="let report of reports; let i = index" class="report-card">
       <div class="report-header">
-        <h3>Equipo: {{ report.equipmentId }}</h3>
+        <h3 class="monda-semibold">Equipo: {{ report.equipmentId }}</h3>
         <button class="delete-btn" (click)="deleteReport(i)">
           <i class="fas fa-trash"></i>
         </button>
       </div>
       
-      <p><strong>Descripción:</strong> {{ report.description }}</p>
-      <p><strong>Fecha:</strong> {{ formatDate(report.date) }}</p>
+      <p class="monda-regular"><strong class="monda-medium">Descripción:</strong> {{ report.description }}</p>
+      <p class="monda-regular"><strong class="monda-medium">Fecha:</strong> {{ formatDate(report.date) }}</p>
       
       <div class="image-container">
         <img [src]="report.imageUrl" alt="Imagen del Reporte">

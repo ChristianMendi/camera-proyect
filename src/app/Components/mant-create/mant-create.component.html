@@ -1,7 +1,7 @@
 <div class="mant-create-container">
   <div class="header-actions">
-    <h2>Crear Nuevo Reporte</h2>
-    <a routerLink="/reportes" class="back-btn">
+    <h2 class="monda-bold">Crear Nuevo Reporte</h2>
+    <a routerLink="/reportes" class="back-btn monda-medium">
       <i class="fas fa-arrow-left"></i> Volver a Reportes
     </a>
   </div>
@@ -9,7 +9,7 @@
   <form (ngSubmit)="saveReport()" #reportForm="ngForm">
     <div class="form-row">
       <div class="form-group">
-        <label for="equipmentId">ID del Equipo:</label>
+        <label for="equipmentId" class="monda-medium">ID del Equipo:</label>
         <input 
           type="text" 
           id="equipmentId" 
@@ -18,15 +18,16 @@
           required
           #equipmentIdInput="ngModel"
           placeholder="Ingresa el ID del equipo"
+          class="monda-regular"
         >
-        <div *ngIf="equipmentIdInput.invalid && (equipmentIdInput.dirty || equipmentIdInput.touched)" class="error-message">
+        <div *ngIf="equipmentIdInput.invalid && (equipmentIdInput.dirty || equipmentIdInput.touched)" class="error-message monda-regular">
           El ID del equipo es obligatorio
         </div>
       </div>
     </div>
     
     <div class="form-group">
-      <label for="description">Descripción:</label>
+      <label for="description" class="monda-medium">Descripción:</label>
       <textarea 
         id="description" 
         name="description" 
@@ -35,18 +36,19 @@
         #descriptionInput="ngModel"
         placeholder="Describe el mantenimiento realizado"
         rows="4"
+        class="monda-regular"
       ></textarea>
-      <div *ngIf="descriptionInput.invalid && (descriptionInput.dirty || descriptionInput.touched)" class="error-message">
+      <div *ngIf="descriptionInput.invalid && (descriptionInput.dirty || descriptionInput.touched)" class="error-message monda-regular">
         La descripción es obligatoria
       </div>
     </div>
     
     <div class="camera-section">
-      <h3>Capturar Imagen</h3>
+      <h3 class="monda-semibold">Capturar Imagen</h3>
       <div class="camera-container">
         <div *ngIf="imageUrl" class="preview-container">
           <img [src]="imageUrl" alt="Vista previa">
-          <button type="button" class="remove-image-btn" (click)="removeImage()">
+          <button type="button" class="remove-image-btn monda-medium" (click)="removeImage()">
             <i class="fas fa-times"></i> Eliminar imagen
           </button>
         </div>
@@ -56,7 +58,7 @@
         </div>
       </div>
       
-      <div *ngIf="formSubmitted && !imageUrl" class="error-message">
+      <div *ngIf="formSubmitted && !imageUrl" class="error-message monda-regular">
         Se requiere una imagen para el reporte
       </div>
     </div>
@@ -64,14 +66,14 @@
     <div class="form-actions">
       <button 
         type="button" 
-        class="cancel-btn"
+        class="cancel-btn monda-medium"
         routerLink="/reportes"
       >
         Cancelar
       </button>
       <button 
         type="submit" 
-        class="save-btn"
+        class="save-btn monda-medium"
         [disabled]="reportForm.invalid || !imageUrl"
       >
         Guardar Reporte

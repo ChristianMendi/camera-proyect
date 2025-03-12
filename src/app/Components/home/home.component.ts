@@ -1,7 +1,7 @@
-import { Component, type OnInit } from "@angular/core"
+import { Component, type OnInit, inject } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { RouterLink } from "@angular/router"
-import type { ReportService } from "../../Services/report-service.service"
+import { ReportService } from "../../Services/report-service.service"
 import type { Report } from "../../Models/report.model"
 
 @Component({
@@ -12,9 +12,8 @@ import type { Report } from "../../Models/report.model"
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
+  private reportService = inject(ReportService)
   reports: Report[] = []
-
-  constructor(private reportService: ReportService) {}
 
   ngOnInit(): void {
     this.loadReports()

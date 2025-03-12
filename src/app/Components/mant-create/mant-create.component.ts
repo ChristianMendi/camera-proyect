@@ -1,9 +1,9 @@
-import { Component, ViewChild } from "@angular/core"
+import { Component, ViewChild, inject } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { FormsModule, type NgForm } from "@angular/forms"
-import { RouterLink, type Router } from "@angular/router"
+import { RouterLink, Router } from "@angular/router"
 import { CameraComponent } from "../camera/camera.component"
-import type { ReportService } from "../../Services/report-service.service"
+import { ReportService } from "../../Services/report-service.service"
 
 @Component({
   selector: "app-mant-create",
@@ -15,15 +15,13 @@ import type { ReportService } from "../../Services/report-service.service"
 export class MantCreateComponent {
   @ViewChild("reportForm") reportForm!: NgForm
 
+  private reportService = inject(ReportService)
+  private router = inject(Router)
+
   equipmentId = ""
   description = ""
   imageUrl = ""
   formSubmitted = false
-
-  constructor(
-    private reportService: ReportService,
-    private router: Router,
-  ) {}
 
   onImageCaptured(imageUrl: string) {
     this.imageUrl = imageUrl

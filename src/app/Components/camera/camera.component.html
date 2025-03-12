@@ -1,22 +1,22 @@
 <div class="camera-container">
-    <div class="image-list" *ngIf="imgUrl.length > 0">
-      <div class="image-item" *ngFor="let img of imgUrl; let i = index">
-        <img [src]="img" alt="Imagen capturada">
-        <button class="remove-btn" (click)="removeImage(i)">×</button>
-      </div>
-    </div>
-  
-    <button 
-      class="camera-button" 
-      [disabled]="loading" 
-      (click)="takePicture()"
-    >
-      <span *ngIf="!loading">Tomar foto</span>
-      <span *ngIf="loading">Procesando...</span>
-    </button>
-  
-    <div *ngIf="errorMessage" class="error-message">
-      <p>{{ errorMessage }}</p>
+  <div class="image-list" *ngIf="imgUrl.length > 0">
+    <div class="image-item" *ngFor="let img of imgUrl; let i = index">
+      <img [src]="img" alt="Imagen capturada">
+      <button class="remove-btn" (click)="removeImage(i)">×</button>
     </div>
   </div>
-  
+
+  <button 
+    class="camera-button monda-medium" 
+    [disabled]="loading" 
+    (click)="takePicture()"
+  >
+    <span *ngIf="!loading">Tomar foto</span>
+    <span *ngIf="loading">Procesando...</span>
+  </button>
+
+  <div *ngIf="errorMessage" class="error-message monda-regular">
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>
+
